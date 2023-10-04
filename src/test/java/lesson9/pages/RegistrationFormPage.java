@@ -17,7 +17,7 @@ public class RegistrationFormPage {
     CalendarComponent calendarComponent = new CalendarComponent();
     SelenideElement firstNameInput = $("#firstName"),
             lastnameInput = $("#lastName"),
-            genderWrapper = $(byTagAndText("label", "Male")),
+            genderWrapper = $("#genterWrapper"),
             numberInput = $("#userNumber"),
             emailInput = $("#userEmail"),
             titleForm = $(".practice-form-wrapper"),
@@ -28,7 +28,9 @@ public class RegistrationFormPage {
             selectState = $(byTagAndText("div", "Select State")),
             selectCity = $(byTagAndText("div", "Select City")),
             titleResultTable = $(".modal-header"),
-            resultTable = $(".modal-body");
+            resultTable = $(".modal-body"),
+            subjectDropDown = $(".subjects-auto-complete__menu"),
+            hobbiesWrapper = $("#hobbiesWrapper");
 
     public RegistrationFormPage checkTitleTableAndTableResult(String value) {
         titleResultTable.shouldHave(Condition.exactText(value));
@@ -52,8 +54,8 @@ public class RegistrationFormPage {
     }
 
     public RegistrationFormPage setSubject(String value) {
-        subjectInput.setValue("c");
-        $(byTagAndText("div", value)).click();
+        subjectInput.setValue(value);
+        subjectDropDown.$(byText(value)).click();
 
         return this;
     }
@@ -85,7 +87,7 @@ public class RegistrationFormPage {
     }
 
     public RegistrationFormPage setHobbies(String value) {
-        $(byTagAndText("label", value)).click();
+        hobbiesWrapper.$(byText(value)).click();
 
         return this;
     }
@@ -114,8 +116,8 @@ public class RegistrationFormPage {
         return this;
     }
 
-    public RegistrationFormPage setGender() {
-        genderWrapper.click();
+    public RegistrationFormPage setGender(String value) {
+        genderWrapper.$(byTagAndText("label", value)).click();
 
         return this;
     }

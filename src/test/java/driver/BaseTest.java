@@ -18,5 +18,6 @@ abstract public class BaseTest {
     public void tearDown() {
         Selenide.clearBrowserCookies();
         Selenide.clearBrowserLocalStorage();
+        Selenide.closeWebDriver();
     }
 }
